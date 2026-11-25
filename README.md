@@ -1,73 +1,79 @@
 # fretgrep
 
+**English** · [Deutsch](README.de.md)
+
 <p align="center">
-  <img src="docs/logo.svg" alt="fretgrep: ein Griffbrett mit rot markierten Tönen neben dem Schriftzug fretgrep, darunter „find licks, hear them, read them“">
+  <img src="docs/logo.svg" alt="fretgrep: a fretboard with notes marked in red next to the word fretgrep, below it “find licks, hear them, read them”">
 </p>
 
-fretgrep macht eine Sammlung von Gitarren-Lick-Aufnahmen durchsuchbar. Der
-Befehl dazu heißt `fretgrep`. Er liest die MP3-Dateien ein, schlägt aus den
-Dateinamen Tags vor, schreibt gesprochene Erklärungen als Text mit und
-findet Aufnahmen über Stichwörter oder über die Bedeutung der Suchanfrage.
+fretgrep makes a collection of guitar lick recordings searchable. The
+command is called `fretgrep`. It reads in the MP3 files, suggests tags from
+the file names, transcribes spoken explanations to text and finds
+recordings by keywords or by the meaning of a search query.
 
-Alles läuft lokal: die Daten liegen in einer SQLite-Datei, die
-Spracherkennung läuft auf dem eigenen Rechner, die Suche nach Bedeutung
-nutzt einen eigenen Ollama-Server.
+Everything runs locally: the data lives in a SQLite file, speech
+recognition runs on your own machine, and the search by meaning uses your
+own Ollama server.
 
-## Schnellstart
+> **Note:** The command-line output and the detailed documentation in
+> `docs/` are currently in German. Search queries work in English too: the
+> tag vocabulary knows English terms (e.g. `minor`), and the search by
+> meaning uses a multilingual model.
+
+## Quick start
 
 ```sh
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev,transcribe]"
 
-export FRETGREP_LIBRARY=~/pfad/zu/den/aufnahmen
+export FRETGREP_LIBRARY=~/path/to/recordings
 export FRETGREP_EMBED_MODEL=bge-m3:latest
 
-fretgrep db upgrade     # Datenbank anlegen
-fretgrep scan           # Aufnahmen einlesen
-fretgrep transcribe     # optional: Gesprochenes mitschreiben
-fretgrep embed          # optional: Vektoren für die Suche nach Bedeutung
+fretgrep db upgrade     # create the database
+fretgrep scan           # read in the recordings
+fretgrep transcribe     # optional: transcribe what is spoken
+fretgrep embed          # optional: vectors for the search by meaning
 
-fretgrep search trauriger blues von wes   # nach Bedeutung, wenn Ollama läuft
-fretgrep search -k chet baker moll        # nur Stichwörter, alle müssen passen
-fretgrep play 21 -s 0.7 # Aufnahme 21 mit 70 % Tempo abspielen
-fretgrep search -n 5 blues --play         # die Treffer nacheinander abspielen
-fretgrep search -n 5 hm5 --save "hm5 üben"   # Treffer in eine eigene Wiedergabeliste
-fretgrep playlist show "hm5 üben" --play     # die Liste zeigen und abspielen
-fretgrep notes 21       # gespielte Noten anzeigen (eigene Installation nötig)
-fretgrep notes 21 --show            # dasselbe als Notenblatt im Fenster (braucht LilyPond)
-fretgrep notes 21 --sheet lick.pdf   # das Notenblatt als Datei speichern
-fretgrep notes 21 --sheet lick.pdf --rhythm   # mit geschätzten Notenwerten
-fretgrep tones G7HM5    # Töne von Akkord und Skala, sofort
-fretgrep chat welche Skala passt über Dm7b5   # den Assistenten fragen
-fretgrep chat -c und welche Aufnahmen hab ich dazu   # daran anknüpfen
+fretgrep search sad blues by wes          # by meaning, if Ollama is running
+fretgrep search -k chet baker minor       # keywords only, all must match
+fretgrep play 21 -s 0.7 # play recording 21 at 70 % speed
+fretgrep search -n 5 blues --play         # play the hits one after another
+fretgrep search -n 5 hm5 --save "hm5 practice"   # save the hits to a playlist
+fretgrep playlist show "hm5 practice" --play     # show and play the playlist
+fretgrep notes 21       # show the notes played (extra installation needed)
+fretgrep notes 21 --show            # the same as sheet music in a window (needs LilyPond)
+fretgrep notes 21 --sheet lick.pdf   # save the sheet music to a file
+fretgrep notes 21 --sheet lick.pdf --rhythm   # with estimated note values
+fretgrep tones G7HM5    # notes of chord and scale, instantly
+fretgrep chat which scale fits over Dm7b5     # ask the assistant
+fretgrep chat -c and which recordings do I have for it   # follow up
 ```
 
-Befehle und Schalter lassen sich mit der Tab-Taste ergänzen, nach einmaliger
-Einrichtung (`fretgrep completion --help`, ausführlich in der
-[Benutzung](docs/benutzung.md#tab-vervollständigung)).
+Commands and options can be completed with the Tab key after a one-time
+setup (`fretgrep completion --help`, details in the
+[usage guide](docs/benutzung.md#tab-vervollständigung), German).
 
-Für einzelne Befehle sind zusätzliche Programme nötig (ffmpeg, mpv,
-LilyPond, ein Ollama-Server); die Liste steht in der
-[Benutzung](docs/benutzung.md#voraussetzungen).
+Some commands need additional programs (ffmpeg, mpv, LilyPond, an Ollama
+server); the list is in the
+[usage guide](docs/benutzung.md#voraussetzungen) (German).
 
-## Dokumentation
+## Documentation (German)
 
-- [Benutzung](docs/benutzung.md): Installation, Einstellungen, alle Befehle,
-  wann welcher Befehl nötig ist, Blick in die Datenbank.
-- [Architektur](docs/architektur.md): Aufbau, Datenmodell, wie Einlesen und
-  Suche funktionieren, Entwicklung und Tests.
-- [Ursprünglicher Auftrag](docs/prompt.md): Ziele und Rahmenbedingungen.
+- [Usage](docs/benutzung.md): installation, settings, all commands, when
+  which command is needed, a look into the database.
+- [Architecture](docs/architektur.md): structure, data model, how reading
+  in and search work, development and tests.
+- [Original brief](docs/prompt.md): goals and constraints.
 
-## Stand
+## Status
 
-Vorhanden sind Einlesen, Tag-Vorschläge, eigene Tags und Notizen,
-Stichwortsuche, Transkription, die Suche nach Bedeutung, die Wiedergabe
-mit Tempo- und Tonhöhenänderung und die Anzeige der erkannten Noten als
-Text, MIDI oder Notenblatt (als Datei oder im Fenster), auf Wunsch mit
-geschätzten Notenwerten, ein Assistent für Fragen zu Harmonielehre und
-Sammlung und die Tab-Vervollständigung.
+Available: reading in, tag suggestions, custom tags and notes, keyword
+search, transcription, search by meaning, playback with tempo and pitch
+changes, display of the detected notes as text, MIDI or sheet music (as a
+file or in a window), optionally with estimated note values, an assistant
+for questions about harmony and the collection, and Tab completion.
 
-## Lizenz
+## License
 
-[MIT](LICENSE). Die Pflichtabhängigkeit mutagen steht unter
-GPL-2.0-or-later und wird bei der Installation getrennt geladen.
+[MIT](LICENSE). The required dependency mutagen is licensed under
+GPL-2.0-or-later and is installed separately.
