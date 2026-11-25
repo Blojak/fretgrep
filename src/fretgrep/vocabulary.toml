@@ -1,0 +1,106 @@
+# Vokabular für den Dateinamen-Parser.
+#
+# [vocabulary.<kategorie>]: kanonischer Wert = Liste der Schreibweisen
+# (klein geschrieben, Mehrwort-Schreibweisen mit Leerzeichen).
+# Links steht, was als Tag gespeichert wird, z. B. der volle Name. Rechts
+# steht alles, was im Dateinamen dafür stehen kann. Fehlt rechts die
+# Kurzform, wird sie im Dateinamen nicht mehr erkannt:
+#     "jimmy raney" = ["raney", "jimmy raney"]
+# Treffer hier gelten als sicher (Konfidenz 0.9).
+#
+# [[ambiguous]]: Schreibweisen, die mehrdeutig sind (Konfidenz 0.5).
+#
+# [descriptions]: kanonischer Wert = kurze Erklärung. Sie wird für die
+# Suche nach Bedeutung mit eingebettet, damit z. B. "Spuren übereinander"
+# zu "looper" findet. Nach einer Änderung "fretgrep embed" ausführen.
+#
+# [stopwords]: Füllwörter, die weder Tag noch "nicht erkannt" sind.
+
+[vocabulary.progression]
+"ii-V-I" = ["251", "2 5 1"]
+
+[vocabulary.tonality]
+"major" = ["dur", "major"]
+"minor" = ["moll", "minor"]
+
+[vocabulary.concept]
+"hm5" = ["hm5"]
+"altered" = ["alt", "altered", "alteriert"]
+"tritone substitution" = ["trit", "tritonus"]
+"diminished" = ["dim"]
+"mixolydian" = ["mixo"]
+"dorian" = ["dorisch", "dorian"]
+"locrian" = ["lokrisch"]
+"bebop" = ["bebop"]
+"blues" = ["blues", "bluesy"]
+"chromatic" = ["chrom", "chromatisch"]
+"arpeggio" = ["arp", "arpeggio"]
+"octave displacement" = ["octave displacement"]
+"scale" = ["scale", "skala"]
+"motif" = ["motiv", "motive"]
+"combination" = ["kombi", "combi", "combis"]
+
+[vocabulary.technique]
+"looper" = ["looper"]
+"pull-off" = ["pull off"]
+"bending" = ["bending"]
+"trill" = ["triller"]
+
+[vocabulary.variant]
+"simple" = ["simp", "simple"]
+
+[vocabulary.song]
+"there will never be another you" = ["twnby", "twnbay"]
+"four on six" = ["four on six"]
+"along came betty" = ["along came betty"]
+"this i dig of you" = ["i dig of you", "dig of"]
+"i found a new baby" = ["new baby"]
+
+[vocabulary.source]
+"wes montgomery" = ["wes"]
+"joe pass" = ["joe pass", "pass"]
+"chet baker" = ["chet baker", "chet"]
+"david baker" = ["david baker"]
+"jimmy raney" = ["raney", "jimmy raney"]
+"jens larsen" = ["jens larsen", "larsen"]
+"russell malone" = ["malone", "russell malone"]
+"george benson" = ["benson", "george benson"]
+"barry harris" = ["barry harris"]
+"hank mobley" = ["mobley", "hank mobley"]
+"cecil alexander" = ["cecil alexander", "cecil"]
+"jocelyn gould" = ["gould", "jocelyn gould"]
+"charlie christian" = ["cc", "charlie christian"]
+"grant green" = ["grant green"]
+
+[[ambiguous]]
+alias = "baker"
+category = "source"
+value = "baker"
+
+[[ambiguous]]
+alias = "jens"
+category = "source"
+value = "jens larsen"
+
+[[ambiguous]]
+alias = "betty"
+category = "song"
+value = "along came betty"
+
+[[ambiguous]]
+alias = "christian"
+category = "source"
+value = "charlie christian"
+
+[descriptions]
+"hm5" = "Harmonisch-Moll-5, Mixolydisch b9 b13, harmonic-minor-5"
+"altered" = "alterierte Skala, altered scale"
+"tritone substitution" = "Tritonus-Substitution"
+"simple" = "vereinfachte Variante"
+"looper" = "mehrere Spuren übereinander"
+
+[stopwords]
+words = [
+    "aber", "and", "auch", "auf", "aus", "dann", "etc", "im", "in", "inkl",
+    "lick", "me", "mit", "of", "on", "over", "the", "über", "und", "von", "you",
+]

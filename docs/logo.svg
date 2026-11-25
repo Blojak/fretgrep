@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="599" height="150" viewBox="0 0 599 150" role="img" aria-label="fretgrep: find licks, hear them, read them">
+  <style>
+    text { font-family: ui-monospace, 'DejaVu Sans Mono', Menlo, Consolas, monospace; font-size: 14px; white-space: pre; }
+    .text { fill: #e6e6e6; }
+    .dim { fill: #7a7f8c; }
+    .match { fill: #ff5c57; font-weight: bold; }
+  </style>
+  <rect width="599" height="150" rx="10" fill="#1d1f24"/>
+  <text x="18" y="32" textLength="562.8" lengthAdjust="spacing"><tspan class="text"> e </tspan><tspan class="dim">║───┼───┼───┼───┼───┼───┤</tspan><tspan class="text">     __         _   </tspan><tspan class="match">                   </tspan></text>
+  <text x="18" y="51" textLength="562.8" lengthAdjust="spacing"><tspan class="text"> B </tspan><tspan class="dim">║───┼───┼─</tspan><tspan class="match">●</tspan><tspan class="dim">─┼───┼───┼───┤</tspan><tspan class="text">    / _|_ _ ___| |_ </tspan><tspan class="match"> __ _ _ _ ___ _ __ </tspan></text>
+  <text x="18" y="70" textLength="562.8" lengthAdjust="spacing"><tspan class="text"> G </tspan><tspan class="dim">║───┼───┼───┼─</tspan><tspan class="match">●</tspan><tspan class="dim">─┼───┼───┤</tspan><tspan class="text">   |  _| &#x27;_/ -_)  _|</tspan><tspan class="match">/ _` | &#x27;_/ -_) &#x27;_ \</tspan></text>
+  <text x="18" y="89" textLength="562.8" lengthAdjust="spacing"><tspan class="text"> D </tspan><tspan class="dim">║───┼─</tspan><tspan class="match">●</tspan><tspan class="dim">─┼───┼───┼───┼───┤</tspan><tspan class="text">   |_| |_| \___|\__|</tspan><tspan class="match">\__, |_| \___| .__/</tspan></text>
+  <text x="18" y="108" textLength="562.8" lengthAdjust="spacing"><tspan class="text"> A </tspan><tspan class="dim">║───┼───┼─</tspan><tspan class="match">●</tspan><tspan class="dim">─┼───┼───┼───┤</tspan><tspan class="text">                    </tspan><tspan class="match">|___/        |_|   </tspan></text>
+  <text x="18" y="127" textLength="529.2" lengthAdjust="spacing"><tspan class="text"> E </tspan><tspan class="dim">║───┼───┼───┼───┼───┼───┤</tspan><tspan class="text">   find licks, hear them, read them</tspan></text>
+</svg>
